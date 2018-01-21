@@ -1,0 +1,16 @@
+{
+  "name": "jlpt-anki-deck-verifier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cherio": "^1.0.0-rc.2",
+    "fetch": "^1.1.0",
+    "lodash": "^4.17.4"
+  }
+}
