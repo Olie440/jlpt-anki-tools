@@ -1,3 +1,3 @@
 const jisho = require('./lib/jisho.js');
 
-jisho.findWordForLevel('せっけん', 'n5').then(console.log);
+jisho.findWordForLevel('nomu', 'n5').then(console.log);
