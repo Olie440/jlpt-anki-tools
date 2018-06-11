@@ -29,5 +29,5 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-#dictionary
-dictionary.json
+#output
+output/*
