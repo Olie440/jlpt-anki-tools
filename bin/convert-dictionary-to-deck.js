@@ -3,20 +3,17 @@ const { writeFileSync, readdirSync } = require('fs');
 const anki = require('../lib/anki.js');
 const japanesepod101 = require('../lib/japanesepod101.js');
 const utils = require('../lib/utils.js');
-
-const deckPath = process.argv[2];
-const outputDir = process.argv[3];
-
-const words = anki.loadFile(deckPath);
+const outputDir = './output/deck';
+const words = require('../output/dictionary-missing-words.json');
 console.log('[✓] Loaded Deck');
 
 const download = utils.concurrentInvoke(words, 10, (word) => {
-    return japanesepod101.downloadAudio(word.kana, outputDir)
+    return japanesepod101.downloadAudio(word, outputDir)
         .then(() => {
-            console.log(`[✓] Audio for ${word.kana} downloaded`);
+            console.log(`[✓] Audio for ${word.forms.dictionary} downloaded`);
         })
         .catch(() => {
-            console.log(`[✘] Audio for ${word.kana} unavailable`);
+            console.log(`[✘] Audio for ${word.forms.dictionary} unavailable`);
         });
 });
 
@@ -25,15 +22,20 @@ download.then(() => {
 
     const files = readdirSync(outputDir);
     const output = words.map(word => {
-        const hasAudio = files.includes(`${word.kana}.mp3`);
+        const hasAudio = files.includes(`${word.forms.dictionary}.mp3`);
+        const row = [
+            word.forms.dictionary,
+            word.forms.furigana,
+            word.definitions.join(', ')
+        ];
 
         if (hasAudio) {
-            word.raw.push(`[sound:${word.kana}.mp3]`);
+            row.push(`[sound:${word.forms.dictionary}.mp3]`);
         } else {
-            word.raw.push('');
+            row.push('');
         }
 
-        return word.raw.join('\t');
+        return row.join('\t');
     });
 
     console.log('[✓] Audio added to end of deck data');

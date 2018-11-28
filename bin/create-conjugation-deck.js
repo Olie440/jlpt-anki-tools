@@ -1,6 +1,6 @@
 const { writeFileSync } = require('fs');
 const _ = require('lodash');
-const dictionary = require('../output/dictionary.json');
+const dictionary = require('../output/dictionary-missing-words.json');
 
 function createDeckRow(word) {
     const row = [
