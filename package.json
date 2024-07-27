@@ -12,6 +12,10 @@
     "cherio": "^1.0.0-rc.2",
     "fetch": "^1.1.0",
     "lodash": "^4.17.4",
+    "readline-sync": "^1.4.10",
     "sha1": "^1.1.1"
+  },
+  "bin": {
+    "search-jmdict": "./bin/search-jmdict.js"
   }
 }
