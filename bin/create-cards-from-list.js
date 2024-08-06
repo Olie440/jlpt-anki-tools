@@ -6,7 +6,7 @@ const utils = require("../lib/utils.js");
 const OUTPUT_DIR = "./output/deck";
 const LIST_PATH = "./input/list.txt";
 const LIST_OFFSET = 0;
-const WORD_LIMIT = 1500;
+const WORD_LIMIT = 5000;
 
 async function convertListToDictionary() {
   if (!utils.isDirectoryEmpty(OUTPUT_DIR)) {
